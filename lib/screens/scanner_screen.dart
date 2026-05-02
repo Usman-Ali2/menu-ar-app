@@ -19,6 +19,27 @@ class ScannerScreen extends StatefulWidget { // Scanner screen widget
 
 class _ScannerScreenState extends State<ScannerScreen> { // State class
   bool _isProcessing = false; // Prevent multiple scans
+  final MobileScannerController _controller = MobileScannerController(); // Scanner controller
+
+  @override
+  void initState() { // Init
+    super.initState(); // Call super
+    _controller.start(); // Start camera
+    _controller.barcodes.listen((_) {}); // Keep stream alive
+    _controller.hasCameraPermission.listen((granted) { // Listen permission
+      if (granted == false && mounted) { // If denied
+        ScaffoldMessenger.of(context).showSnackBar( // Show snackbar
+          const SnackBar(content: Text('Camera permission denied')), // Message
+        ); // End snackbar
+      } // End if
+    }); // End listener
+  } // End initState
+
+  @override
+  void dispose() { // Dispose
+    _controller.dispose(); // Dispose controller
+    super.dispose(); // Call super
+  } // End dispose
 
   @override
   Widget build(BuildContext context) { // Build method
@@ -30,6 +51,7 @@ class _ScannerScreenState extends State<ScannerScreen> { // State class
       body: Stack( // Overlay scanner + UI
         children: [ // Stack children
           MobileScanner( // Camera scanner
+            controller: _controller, // Use controller
             onDetect: (capture) { // On QR detected
               if (_isProcessing) return; // Ignore duplicates
               final barcode = capture.barcodes.firstOrNull; // Get first barcode
@@ -51,13 +73,6 @@ class _ScannerScreenState extends State<ScannerScreen> { // State class
                 _isProcessing = false; // Unlock processing
               } // End if
             }, // End onDetect
-            onPermissionSet: (context, granted) { // Permission callback
-              if (!granted) { // If permission denied
-                ScaffoldMessenger.of(context).showSnackBar( // Show snackbar
-                  const SnackBar(content: Text('Camera permission denied')), // Message
-                ); // End snackbar
-              } // End if
-            }, // End onPermissionSet
           ), // End MobileScanner
           const ScanOverlay(), // Animated overlay
           Positioned( // Positioned instructions
