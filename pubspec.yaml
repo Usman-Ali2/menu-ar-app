@@ -1,0 +1,23 @@
+name: burgerscan # App package name
+description: A QR burger scanner demo app # App description
+publish_to: "none" # Prevent accidental publishing
+version: 1.0.0+1 # App version and build number
+
+environment: # Dart SDK constraints
+  sdk: ">=3.0.0 <4.0.0" # Use latest stable Dart 3
+
+dependencies: # App dependencies
+  flutter: # Flutter SDK
+    sdk: flutter # Pull Flutter from SDK
+  mobile_scanner: ^5.0.0 # QR scanning package
+  cached_network_image: ^3.3.1 # Network image caching
+  qr_flutter: ^4.1.0 # QR code generator
+  shimmer: ^3.0.0 # Shimmer placeholder
+
+dev_dependencies: # Dev-only dependencies
+  flutter_test: # Flutter test SDK
+    sdk: flutter # Use Flutter test from SDK
+  flutter_lints: ^3.0.0 # Lint rules
+
+flutter: # Flutter-specific settings
+  uses-material-design: true # Enable Material icons

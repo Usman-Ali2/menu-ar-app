@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?> <!-- XML header -->
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"> <!-- DOCTYPE -->
+<plist version="1.0"> <!-- Plist root -->
+<dict> <!-- Root dictionary -->
+    <key>NSCameraUsageDescription</key> <!-- Camera usage key -->
+    <string>Camera access is required to scan burger QR codes.</string> <!-- Camera usage string -->
+</dict> <!-- End dictionary -->
+</plist> <!-- End plist -->

@@ -1,0 +1,20 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"> <!-- Manifest root -->
+    <uses-permission android:name="android.permission.CAMERA"/> <!-- Camera permission -->
+    <application
+        android:label="BurgerScan" <!-- App label -->
+        android:icon="@mipmap/ic_launcher"> <!-- App icon -->
+        <activity
+            android:name=".MainActivity" <!-- Main activity -->
+            android:exported="true" <!-- Required for launcher -->
+            android:launchMode="singleTop" <!-- Standard launch mode -->
+            android:theme="@style/LaunchTheme" <!-- Launch theme -->
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode" <!-- Config changes -->
+            android:hardwareAccelerated="true" <!-- Performance -->
+            android:windowSoftInputMode="adjustResize"> <!-- Keyboard handling -->
+            <intent-filter> <!-- Launcher intent -->
+                <action android:name="android.intent.action.MAIN"/> <!-- Main action -->
+                <category android:name="android.intent.category.LAUNCHER"/> <!-- Launcher category -->
+            </intent-filter> <!-- End intent-filter -->
+        </activity> <!-- End activity -->
+    </application> <!-- End application -->
+</manifest> <!-- End manifest -->
